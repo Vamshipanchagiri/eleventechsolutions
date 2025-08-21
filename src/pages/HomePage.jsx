@@ -1,22 +1,30 @@
-import React from "react";
-import Home from "./home.jsx";
-import About from "./about.jsx";
-import Clients from "./clients.jsx";
-import Contact from "./contact.jsx";
-import Services from "./services.jsx";
-import WhyUs from "./whyus.jsx";
+import React from 'react';
+import Home from '@/pages/Home';
+import Services from '@/pages/Services';
+import WhyUs from '@/pages/WhyUs';
+import Clients from '@/pages/Clients';
+import Contact from '@/pages/Contact';
 
-function HomePage() {
+const HomePage = () => {
   return (
-    <div className="home-page">
-      <Home />
-      <About />
-      <Services />
-      <Clients />
-      <WhyUs />
-      <Contact />
+    <div>
+      <div id="home">
+        <Home />
+      </div>
+      <div id="services">
+        <Services />
+      </div>
+      <div id="why-us">
+        <WhyUs />
+      </div>
+      <div id="clients">
+        <Clients />
+      </div>
+      <div id="contact">
+        <Contact />
+      </div>
     </div>
   );
-}
+};
 
 export default HomePage;
