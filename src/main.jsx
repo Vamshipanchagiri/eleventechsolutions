@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import HomePage from './HomePage'; // updated to match your renamed file
-import './index.css'; // relative path to CSS
+import HomePage from './pages/HomePage'; // ✅ correct path
+import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
