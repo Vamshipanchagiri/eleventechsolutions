@@ -1,9 +1,9 @@
-import React from 'react';
-import Home from '@/pages/Home';
-import Services from '@/pages/Services';
-import WhyUs from '@/pages/WhyUs';
-import Clients from '@/pages/Clients';
-import Contact from '@/pages/Contact';
+import React from "react";
+import Home from "./Home.jsx";
+import Services from "./Services.jsx";
+import WhyUs from "./WhyUs.jsx";
+import Clients from "./Clients.jsx";
+import Contact from "./Contact.jsx";
 
 const HomePage = () => {
   return (
@@ -28,3 +28,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
