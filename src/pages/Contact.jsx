@@ -1,8 +1,35 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+  const form = useRef();
+  const [success, setSuccess] = useState(null);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_qj9mn8b",   // ✅ Your Service ID
+        "template_i9d7btn",  // ✅ Your Template ID
+        form.current,
+        "o5-Ex7Owap4zrChOM"  // ✅ Your Public Key
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setSuccess(true);
+          form.current.reset();
+        },
+        (error) => {
+          console.log(error.text);
+          setSuccess(false);
+        }
+      );
+  };
+
   const contactInfo = [
     {
       icon: <MapPin className="h-8 w-8 text-blue-600" />,
@@ -12,7 +39,7 @@ const Contact = () => {
     {
       icon: <Mail className="h-8 w-8 text-blue-600" />,
       title: "Email Us",
-      details: "info@eleventechsolutions.com",
+      details: "hr@eleventechsolutions.in",
     },
     {
       icon: <Phone className="h-8 w-8 text-blue-600" />,
@@ -37,6 +64,7 @@ const Contact = () => {
           </p>
         </motion.div>
 
+        {/* Contact Info Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {contactInfo.map((info, index) => (
             <motion.div
@@ -50,9 +78,7 @@ const Contact = () => {
               <div className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                 {info.icon}
               </div>
-              <h3 className="mb-3">
-                {info.title}
-              </h3>
+              <h3 className="mb-3">{info.title}</h3>
               <p className="text-lg text-blue-600 hover:text-blue-800 transition-colors">
                 {info.details}
               </p>
@@ -60,6 +86,7 @@ const Contact = () => {
           ))}
         </div>
 
+        {/* Contact Form */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -70,20 +97,52 @@ const Contact = () => {
           <h2 className="text-center text-blue-gradient mb-8">
             Send Us a Message
           </h2>
-          <div className="w-full">
-            <iframe 
-              src="https://docs.google.com/forms/d/e/1FAIpQLSc-F5SwhgF8N7g-zAFaCXHw2jJZsQ_9Ea_1A8A_j1o1X8qI2w/viewform?embedded=true" 
-              width="100%" 
-              height="700" 
-              frameBorder="0" 
-              marginHeight="0" 
-              marginWidth="0"
-              className="rounded-lg"
-              title="Eleventech Solutions Contact Form"
+
+          <form ref={form} onSubmit={sendEmail} className="space-y-6">
+            <div>
+              <label className="block mb-2 font-medium">Your Name</label>
+              <input
+                type="text"
+                name="user_name"
+                required
+                className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+
+            <div>
+              <label className="block mb-2 font-medium">Your Email</label>
+              <input
+                type="email"
+                name="user_email"
+                required
+                className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+
+            <div>
+              <label className="block mb-2 font-medium">Message</label>
+              <textarea
+                name="message"
+                rows="5"
+                required
+                className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
             >
-              Loading…
-            </iframe>
-          </div>
+              Send Message
+            </button>
+
+            {success === true && (
+              <p className="text-green-600 mt-4">✅ Message sent successfully!</p>
+            )}
+            {success === false && (
+              <p className="text-red-600 mt-4">❌ Failed to send. Try again later.</p>
+            )}
+          </form>
         </motion.div>
       </div>
     </section>

@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://eleventechsolutions.in/sitemap.xml
