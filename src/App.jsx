@@ -9,11 +9,18 @@ function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen bg-white text-gray-800">
+        {/* Navbar stays at top */}
         <Navbar />
+
+        {/* Main content */}
         <main className="flex-grow">
           <HomePage />
         </main>
+
+        {/* Footer stays at bottom */}
         <Footer />
+
+        {/* Toast notifications */}
         <Toaster />
       </div>
     </Router>
