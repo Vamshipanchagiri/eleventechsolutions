@@ -1,1 +1,14 @@
+# vercel
 .vercel
+
+# dependencies
+node_modules/
+
+# production build
+dist/
+build/
+
+# misc
+.DS_Store
+.env
+*.local
