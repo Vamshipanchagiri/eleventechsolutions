@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Logo from '@/assets/logo.png'; // import your logo
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,7 +37,9 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || isMobileMenuOpen ? 'bg-[#0A0A0A]/80 backdrop-blur-lg shadow-lg shadow-black/20 border-b border-white/10' : 'bg-transparent'
+        isScrolled || isMobileMenuOpen
+          ? 'bg-[#0A0A0A]/80 backdrop-blur-lg shadow-lg shadow-black/20 border-b border-white/10'
+          : 'bg-transparent'
       }`}
     >
       <div className="section-container">
@@ -47,10 +50,8 @@ const Navbar = () => {
             onClick={() => scrollToSection('home')}
             style={{ cursor: 'pointer' }}
           >
-            <span className="text-3xl font-bold text-white tracking-tight">
-              Eleventech Solutions
-              <span className="text-violet-500">.</span>
-            </span>
+            {/* Logo Image */}
+            <img src={Logo} alt="Eleventech Solutions Logo" className="h-10 w-auto" />
           </motion.div>
 
           <div className="hidden md:flex items-center space-x-8">
@@ -69,11 +70,15 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:block">
-            <Button onClick={() => scrollToSection('contact')} variant="outline" className="border-violet-500 text-violet-500 hover:bg-violet-500 hover:text-white transition-all duration-300">
+            <Button
+              onClick={() => scrollToSection('contact')}
+              variant="outline"
+              className="border-violet-500 text-violet-500 hover:bg-violet-500 hover:text-white transition-all duration-300"
+            >
               Contact Us
             </Button>
           </div>
-          
+
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -101,7 +106,10 @@ const Navbar = () => {
                   {item.name}
                 </button>
               ))}
-              <Button onClick={() => scrollToSection('contact')} className="w-full mt-4 bg-violet-600 hover:bg-violet-700 text-white text-lg py-3">
+              <Button
+                onClick={() => scrollToSection('contact')}
+                className="w-full mt-4 bg-violet-600 hover:bg-violet-700 text-white text-lg py-3"
+              >
                 Contact Us
               </Button>
             </div>

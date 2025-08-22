@@ -41,7 +41,7 @@
 }
 
 body {
-  background-color: #FFFFFF; /* changed to white */
+  background-color: #0A0A0A;
   color: hsl(var(--foreground));
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
