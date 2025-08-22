@@ -1,100 +1,75 @@
 import React from 'react';
-import { Link as ScrollLink } from 'react-scroll';
-import { Link as RouterLink } from 'react-router-dom';
-import { Briefcase, Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
-  const navItems = [
-    { name: 'Home', to: 'home' },
-    { name: 'Services', to: 'services' },
-    { name: 'Why Us', to: 'why-us' },
-    { name: 'Clients', to: 'clients' },
-    { name: 'Contact Us', to: 'contact' }
-  ];
-
-  const contactInfo = [
-    { icon: <MapPin className="h-5 w-5 mr-3 text-blue-400" />, text: "Gachibowli, Hyderabad, India" },
-    { icon: <Mail className="h-5 w-5 mr-3 text-blue-400" />, text: "info@eleventechsolutions.com" },
-    { icon: <Phone className="h-5 w-5 mr-3 text-blue-400" />, text: "+91 8977897877" },
-  ];
+  const navItems = ['Home', 'About', 'Services', 'Why Us', 'Contact'];
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-800 text-gray-300">
-      <div className="container-custom py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
-          <div className="space-y-4">
-            <RouterLink to="/" className="flex items-center space-x-3">
-              <div className="bg-blue-600 p-2 rounded-lg">
-                <Briefcase className="h-6 w-6 text-white" />
-              </div>
-              <span className="font-poppins font-bold text-2xl text-white">
-                Eleventech
-              </span>
-            </RouterLink>
-            <p className="text-gray-400 text-sm">
-              Innovating the Digital Future, One Solution at a Time. Your trusted partner in digital transformation.
+    <footer className="bg-black/50 border-t border-gray-800 text-gray-400">
+      <div className="section-container section-padding pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Company Info */}
+          <div className="lg:col-span-1">
+            <p className="text-2xl font-bold text-white mb-4">
+              Eleventech Solutions
+            </p>
+            <p className="max-w-xs">
+              Pioneering the future of technology with innovative and reliable IT solutions.
             </p>
           </div>
 
+          {/* Quick Links */}
           <div>
-            <p className="font-poppins font-semibold text-white mb-4">Quick Links</p>
-            <ul className="space-y-2">
-              {navItems.map(item => (
-                <li key={item.name}>
-                   <ScrollLink
-                    to={item.to}
-                    spy={true}
-                    smooth={true}
-                    offset={-80}
-                    duration={500}
-                    className="hover:text-white transition-colors duration-300 cursor-pointer">
-                    {item.name}
-                  </ScrollLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className="font-poppins font-semibold text-white mb-4">Contact Info</p>
+            <p className="font-semibold text-white mb-4 text-lg">Quick Links</p>
             <ul className="space-y-3">
-              {contactInfo.map((info, index) => (
-                <li key={index} className="flex items-start">
-                  {info.icon}
-                  <span>{info.text}</span>
+              {navItems.map((item) => (
+                <li key={item}>
+                  <a
+                    href={`#${item.toLowerCase().replace(' ', '')}`}
+                    className="hover:text-violet-400 transition-colors duration-300"
+                  >
+                    {item}
+                  </a>
                 </li>
               ))}
             </ul>
           </div>
 
+          {/* Contact Info */}
           <div>
-            <p className="font-poppins font-semibold text-white mb-4">Newsletter</p>
-            <p className="text-gray-400 text-sm mb-4">
-              Stay updated with our latest news and offers.
-            </p>
-            <form onSubmit={(e) => e.preventDefault()}>
-              <div className="flex">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  className="w-full px-4 py-2 rounded-l-md bg-gray-700 text-white border-gray-600 focus:ring-blue-500 focus:border-blue-500"
-                />
-                <button 
-                  type="submit"
-                  className="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition-colors"
-                >
-                  Subscribe
-                </button>
-              </div>
-            </form>
+            <p className="font-semibold text-white mb-4 text-lg">Contact Us</p>
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <Mail className="h-5 w-5 mr-3 mt-1 flex-shrink-0 text-violet-400" />
+                <a href="mailto:info@eleventechsolutions.in" className="hover:text-violet-400">info@eleventechsolutions.in</a>
+              </li>
+              <li className="flex items-start">
+                <Phone className="h-5 w-5 mr-3 mt-1 flex-shrink-0 text-violet-400" />
+                <a href="tel:8977897877" className="hover:text-violet-400">8977897877</a>
+              </li>
+              <li className="flex items-start">
+                <MapPin className="h-5 w-5 mr-3 mt-1 flex-shrink-0 text-violet-400" />
+                <span>Road No. 10, Jubilee Hills, Hyderabad, Telangana, 500033</span>
+              </li>
+            </ul>
           </div>
 
+          {/* Newsletter (placeholder) */}
+          <div>
+            <p className="font-semibold text-white mb-4 text-lg">Stay Updated</p>
+            <p className="mb-4">Subscribe to our newsletter for the latest tech news and insights.</p>
+            <div className="flex">
+              <input type="email" placeholder="Enter your email" className="w-full bg-gray-800 border-gray-700 rounded-l-md px-4 py-2 focus:ring-violet-500 focus:border-violet-500 focus:outline-none"/>
+              <button className="bg-violet-600 hover:bg-violet-700 text-white font-semibold px-4 py-2 rounded-r-md transition-colors">
+                Subscribe
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="bg-gray-900 py-4">
-        <div className="container-custom text-center text-gray-500 text-sm">
-          <p>&copy; {new Date().getFullYear()} Eleventech Solutions. All Rights Reserved.</p>
+
+        <div className="mt-12 pt-8 border-t border-gray-800 text-center text-sm">
+          <p>&copy; {currentYear} Eleventech Solutions. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

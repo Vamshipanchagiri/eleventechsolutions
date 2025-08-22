@@ -1,21 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link as ScrollLink } from 'react-scroll';
-import { Link as RouterLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Menu, X, Briefcase } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState('home');
-
-  const navItems = [
-    { name: 'Home', to: 'home' },
-    { name: 'Services', to: 'services' },
-    { name: 'Why Us', to: 'why-us' },
-    { name: 'Clients', to: 'clients' },
-    { name: 'Contact Us', to: 'contact' }
-  ];
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,87 +15,95 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navItems = [
+    { name: 'Home', id: 'home' },
+    { name: 'About', id: 'about' },
+    { name: 'Services', id: 'services' },
+    { name: 'Why Us', id: 'whyus' },
+  ];
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-lg shadow-md' : 'bg-white'}`}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled || isMobileMenuOpen ? 'bg-[#0A0A0A]/80 backdrop-blur-lg shadow-lg shadow-black/20 border-b border-white/10' : 'bg-transparent'
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="section-container">
         <div className="flex justify-between items-center h-20">
-          <RouterLink to="/" className="flex items-center space-x-3">
-            <div className="bg-blue-600 p-2 rounded-lg">
-              <Briefcase className="h-6 w-6 text-white" />
-            </div>
-            <span className="font-poppins font-bold text-2xl text-gray-800">
-              Eleventech
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="flex-shrink-0"
+            onClick={() => scrollToSection('home')}
+            style={{ cursor: 'pointer' }}
+          >
+            <span className="text-3xl font-bold text-white tracking-tight">
+              Eleventech Solutions
+              <span className="text-violet-500">.</span>
             </span>
-          </RouterLink>
+          </motion.div>
 
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <ScrollLink
+              <motion.button
                 key={item.name}
-                to={item.to}
-                spy={true}
-                smooth={true}
-                offset={-80}
-                duration={500}
-                onSetActive={() => setActiveLink(item.to)}
-                className={`relative text-base font-medium transition-colors duration-300 cursor-pointer ${
-                  activeLink === item.to
-                    ? 'text-blue-600'
-                    : 'text-gray-600 hover:text-blue-600'
-                }`}
+                onClick={() => scrollToSection(item.id)}
+                whileHover={{ y: -2 }}
+                whileTap={{ y: 0 }}
+                className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium relative group"
               >
                 {item.name}
-                {activeLink === item.to && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute -bottom-2 left-0 right-0 h-0.5 bg-blue-600"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </ScrollLink>
+                <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-violet-500 group-hover:w-full transition-all duration-300"></span>
+              </motion.button>
             ))}
           </div>
 
+          <div className="hidden md:block">
+            <Button onClick={() => scrollToSection('contact')} variant="outline" className="border-violet-500 text-violet-500 hover:bg-violet-500 hover:text-white transition-all duration-300">
+              Contact Us
+            </Button>
+          </div>
+          
           <div className="md:hidden">
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-blue-600 p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-gray-300 hover:text-white transition-colors"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
 
-        {isOpen && (
+        {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white rounded-lg shadow-lg mt-2 mb-4"
+            className="md:hidden"
           >
-            <div className="px-2 pt-2 pb-3 space-y-1">
+            <div className="px-2 pt-2 pb-6 space-y-4 flex flex-col items-center">
               {navItems.map((item) => (
-                <ScrollLink
+                <button
                   key={item.name}
-                  to={item.to}
-                  spy={true}
-                  smooth={true}
-                  offset={-80}
-                  duration={500}
-                  onClick={() => setIsOpen(false)}
-                  className={`block px-3 py-3 text-base font-medium rounded-md transition-all duration-300 cursor-pointer ${
-                    activeLink === item.to
-                      ? 'text-blue-600 bg-blue-50'
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-100'
-                  }`}
+                  onClick={() => scrollToSection(item.id)}
+                  className="block w-full text-center py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors"
                 >
                   {item.name}
-                </ScrollLink>
+                </button>
               ))}
+              <Button onClick={() => scrollToSection('contact')} className="w-full mt-4 bg-violet-600 hover:bg-violet-700 text-white text-lg py-3">
+                Contact Us
+              </Button>
             </div>
           </motion.div>
         )}

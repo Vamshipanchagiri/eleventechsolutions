@@ -1,56 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+ 
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+ 
+  --primary: 262.1 83.3% 57.8%;
+  --primary-foreground: 0 0% 98%;
+ 
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+ 
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+ 
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+ 
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 262.1 83.3% 57.8%;
+ 
+  --radius: 0.75rem;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
 body {
-  font-family: 'Inter', sans-serif;
-  color: #374151; /* text-gray-700 */
-  background-color: #ffffff;
+  background-color: #0A0A0A;
+  color: hsl(var(--foreground));
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.font-poppins {
-  font-family: 'Poppins', sans-serif;
+html {
+  scroll-behavior: smooth;
 }
 
-.section-padding {
-  @apply py-20 lg:py-28;
-}
-
-.container-custom {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-}
-
-h1, h2, h3 {
-  @apply font-poppins font-bold text-gray-900;
-}
-
-h1 {
-  @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
-}
-
-h2 {
-  @apply text-3xl md:text-4xl;
-}
-
-h3 {
-  @apply text-xl md:text-2xl;
-}
-
-p {
-  @apply text-lg text-gray-600 leading-relaxed;
-}
-
-.text-blue-gradient {
-  background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+.gradient-text {
+  background: linear-gradient(135deg, #8B5CF6, #EC4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.card-style {
-  @apply bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
+.glass-card {
+  background: rgba(22, 22, 25, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.radial-gradient-bg {
+    background-image: radial-gradient(circle at top left, rgba(139, 92, 246, 0.15) 0%, transparent 30%), radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.15) 0%, transparent 30%);
+}
+
+.section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.section-padding {
+    @apply py-20 lg:py-28;
 }

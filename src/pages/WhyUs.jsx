@@ -1,77 +1,57 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Headphones, Lightbulb, Users, RefreshCw } from 'lucide-react';
+import { Star, Clock, Users, Trophy, Zap, Heart } from 'lucide-react';
 
 const WhyUs = () => {
-  
   const reasons = [
-    {
-      title: "Proven Client Satisfaction",
-      description: "With a 95% client retention rate, our track record speaks for itself. We build lasting partnerships.",
-      icon: <Users className="h-8 w-8 text-blue-600" />,
-    },
-    {
-      title: "Agile & Adaptive Model",
-      description: "Our development process is flexible and iterative, ensuring we can adapt to changes and deliver results quickly.",
-      icon: <RefreshCw className="h-8 w-8 text-blue-600" />,
-    },
-    {
-      title: "24/7 Support",
-      description: "We provide round-the-clock support with dedicated project managers to ensure your operations run smoothly.",
-      icon: <Headphones className="h-8 w-8 text-blue-600" />,
-    },
-    {
-      title: "Commitment to Innovation",
-      description: "We are dedicated to exploring new technologies and innovative approaches for your long-term success.",
-      icon: <Lightbulb className="h-8 w-8 text-blue-600" />,
-    }
+    { icon: Star, title: 'Proven Expertise', description: 'Years of experience and deep technical knowledge across multiple domains.' },
+    { icon: Zap, title: 'Cutting-Edge Tech', description: 'We leverage the latest technology trends to deliver innovative and future-proof solutions.' },
+    { icon: Users, title: 'Client-Focused', description: 'Your success is our priority. We work closely with you to exceed expectations.' },
+    { icon: Clock, title: 'Timely Delivery', description: 'We deliver projects on time without compromising quality, respecting your schedule.' },
+    { icon: Heart, title: 'Passionate Team', description: 'Our dedicated professionals love what they do, and it shows in our work.' },
+    { icon: Trophy, title: 'Tangible Results', description: 'We are committed to delivering solutions that provide measurable business value.' },
   ];
 
   return (
-    <section className="section-padding">
-      <div className="container-custom">
+    <section id="whyus" className="section-padding bg-[#0A0A0A]">
+      <div className="section-container">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="mb-4">Why Choose Us?</h2>
-          <p className="max-w-3xl mx-auto">
-            Choosing Eleventech Solutions means choosing a technology partner who values innovation, quality, and trust. With over 150+ satisfied clients and 200+ successful projects, our expertise spans across industries and technologies. We prioritize transparency, on-time delivery, and scalable solutions.
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Why Partner With <span className="gradient-text">Eleventech?</span>
+          </h2>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            Our commitment to innovation, quality, and client success makes us the ideal technology partner for your business.
           </p>
         </motion.div>
-        
-        <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center mb-12"
-          >
-          <h2 className="text-blue-gradient">Our Core Strengths</h2>
-        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {reasons.map((reason, index) => (
             <motion.div
-              key={index}
+              key={reason.title}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="card-style p-8 text-center"
+              viewport={{ once: true }}
+              className="relative p-8 rounded-2xl overflow-hidden glass-card transition-all duration-300 hover:shadow-2xl hover:shadow-pink-500/10"
             >
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                {reason.icon}
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-violet-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative z-10">
+                <div className="mb-4">
+                  <reason.icon className="h-10 w-10 text-violet-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">
+                  {reason.title}
+                </h3>
+                <p className="text-gray-400">
+                  {reason.description}
+                </p>
               </div>
-              <h3 className="mb-3">
-                {reason.title}
-              </h3>
-              <p className="text-base">
-                {reason.description}
-              </p>
             </motion.div>
           ))}
         </div>
