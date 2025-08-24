@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, MapPin, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
 import emailjs from 'emailjs-com';
@@ -16,12 +16,26 @@ const Contact = () => {
     setIsSubmitting(true);
     try {
       await emailjs.send('service_qj9mn8b', 'template_i9d7btn', {
-        from_name: formData.name, from_email: formData.email, subject: formData.subject, message: formData.message,
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
       }, 'o5-Ex7Owap4zrChOM');
-      toast({ title: 'Message Sent Successfully! 🎉', description: "Thank you for reaching out. We'll get back to you shortly.", duration: 5000 });
+      
+      toast({ 
+        title: 'Message Sent Successfully! 🎉', 
+        description: "Thank you for reaching out. We'll get back to you shortly.", 
+        duration: 5000 
+      });
+      
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
-      toast({ title: 'Error Sending Message', description: 'Something went wrong. Please try again or contact us directly.', variant: 'destructive', duration: 5000 });
+      toast({ 
+        title: 'Error Sending Message', 
+        description: 'Something went wrong. Please try again or contact us directly.', 
+        variant: 'destructive', 
+        duration: 5000 
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -29,12 +43,10 @@ const Contact = () => {
 
   const contactInfo = [
     { icon: Mail, title: 'Email', details: 'info@eleventechsolutions.in', href: 'mailto:info@eleventechsolutions.in' },
-    { icon: Phone, title: 'Phone', details: '8977897877', href: 'tel:8977897877' },
-    { icon: MapPin, title: 'Address', details: ' ElevenTech Solutions Pvt.
- Ltd.
- Plot No. 45, Hi-Tech City,
- Madhapur, Hyderabad,
- Telangana – 500081', href: '#' },
+    { icon: MapPin, title: 'Address', details: `ElevenTech Solutions Pvt. Ltd.
+Plot No. 45, Hi-Tech City,
+Madhapur, Hyderabad,
+Telangana – 500081`, href: '#' },
   ];
 
   return (
@@ -66,13 +78,56 @@ const Contact = () => {
             <h3 className="text-3xl font-bold text-white mb-8">Send a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input type="text" name="name" value={formData.name} onChange={handleChange} required placeholder="Your Name" className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
-                <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="Your Email" className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  placeholder="Your Name"
+                  className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="Your Email"
+                  className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition"
+                />
               </div>
-              <input type="text" name="subject" value={formData.subject} onChange={handleChange} required placeholder="Subject" className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
-              <textarea name="message" value={formData.message} onChange={handleChange} required rows={5} placeholder="Your Message..." className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition resize-none" />
-              <Button type="submit" disabled={isSubmitting} size="lg" className="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-lg shadow-lg shadow-violet-500/20 hover:shadow-xl transition-all disabled:opacity-50">
-                {isSubmitting ? <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div> : <><Send className="mr-2 h-5 w-5" /> Send Message</>}
+              <input
+                type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+                placeholder="Subject"
+                className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition"
+              />
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={5}
+                placeholder="Your Message..."
+                className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition resize-none"
+              />
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                size="lg"
+                className="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-lg shadow-lg shadow-violet-500/20 hover:shadow-xl transition-all disabled:opacity-50"
+              >
+                {isSubmitting ? (
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                ) : (
+                  <>
+                    <Send className="mr-2 h-5 w-5" /> Send Message
+                  </>
+                )}
               </Button>
             </form>
           </motion.div>
@@ -85,7 +140,11 @@ const Contact = () => {
             className="space-y-8"
           >
             {contactInfo.map((info) => (
-              <a key={info.title} href={info.href} className="flex items-center p-6 glass-card rounded-2xl group hover:border-white/20 transition-all duration-300">
+              <a
+                key={info.title}
+                href={info.href}
+                className="flex items-center p-6 glass-card rounded-2xl group hover:border-white/20 transition-all duration-300"
+              >
                 <div className="bg-violet-500/20 text-violet-400 p-4 rounded-lg mr-5">
                   <info.icon className="h-6 w-6" />
                 </div>
@@ -95,8 +154,12 @@ const Contact = () => {
                 </div>
               </a>
             ))}
-             <div className="mt-8 rounded-2xl overflow-hidden glass-card">
-              <img  class="w-full h-48 object-cover" alt="Map showing location in Hyderabad" src="https://images.unsplash.com/photo-1561653978-a526ddcfda79" />
+            <div className="mt-8 rounded-2xl overflow-hidden glass-card">
+              <img
+                className="w-full h-48 object-cover"
+                alt="Map showing location in Hyderabad"
+                src="https://images.unsplash.com/photo-1561653978-a526ddcfda79"
+              />
             </div>
           </motion.div>
         </div>
