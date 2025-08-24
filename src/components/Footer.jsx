@@ -3,7 +3,6 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
   const navItems = ['Home', 'About', 'Services', 'Why Us', 'Contact'];
-  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-black/50 border-t border-gray-800 text-gray-400">
@@ -26,7 +25,7 @@ const Footer = () => {
               {navItems.map((item) => (
                 <li key={item}>
                   <a
-                    href={`#${item.toLowerCase().replace(' ', '')}`}
+                    href={#${item.toLowerCase().replace(' ', '')}}
                     className="hover:text-violet-400 transition-colors duration-300"
                   >
                     {item}
@@ -50,17 +49,21 @@ const Footer = () => {
               </li>
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 mt-1 flex-shrink-0 text-violet-400" />
-                <span>Road No. 10, Jubilee Hills, Hyderabad, Telangana, 500033</span>
+                <span>Plot No. 45, Hi-Tech City, Madhapur, Hyderabad, Telangana</span>
               </li>
             </ul>
           </div>
 
-          {/* Newsletter (placeholder) */}
+          {/* Newsletter */}
           <div>
             <p className="font-semibold text-white mb-4 text-lg">Stay Updated</p>
             <p className="mb-4">Subscribe to our newsletter for the latest tech news and insights.</p>
             <div className="flex">
-              <input type="email" placeholder="Enter your email" className="w-full bg-gray-800 border-gray-700 rounded-l-md px-4 py-2 focus:ring-violet-500 focus:border-violet-500 focus:outline-none"/>
+              <input 
+                type="email" 
+                placeholder="Enter your email" 
+                className="w-full bg-gray-800 border-gray-700 rounded-l-md px-4 py-2 focus:ring-violet-500 focus:border-violet-500 focus:outline-none"
+              />
               <button className="bg-violet-600 hover:bg-violet-700 text-white font-semibold px-4 py-2 rounded-r-md transition-colors">
                 Subscribe
               </button>
@@ -68,8 +71,9 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-gray-800 text-center text-sm">
-          <p>&copy; {currentYear} Eleventech Solutions. All Rights Reserved.</p>
+          <p>&copy; 2020 Eleventech Solutions. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

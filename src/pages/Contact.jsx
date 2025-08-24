@@ -168,17 +168,6 @@ const Contact = () => {
                 </div>
               </a>
             ))}
-
-            {/* Map / Address */}
-            <div className="mt-8 rounded-2xl overflow-hidden glass-card">
-              <iframe
-                title="Eleventech Solutions Location"
-                src="https://www.google.com/maps/embed/v1/place?q=Plot+No.+45,+Hi-Tech+City,+Madhapur,+Hyderabad,+Telangana&key=YOUR_GOOGLE_MAPS_API_KEY"
-                className="w-full h-48 border-0"
-                allowFullScreen=""
-                loading="lazy"
-              ></iframe>
-            </div>
           </motion.div>
         </div>
       </div>
