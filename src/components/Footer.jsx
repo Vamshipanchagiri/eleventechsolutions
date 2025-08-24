@@ -23,7 +23,7 @@ const Footer = () => {
             {navItems.map((item) => (
               <li key={item}>
                 <a
-                  href={#${item.toLowerCase().replace(" ", "")}}
+                  href={#${item.toLowerCase().replace(" ", "")}'}
                   className="hover:text-violet-400 transition-colors duration-300"
                 >
                   {item}
