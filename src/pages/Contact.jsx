@@ -15,21 +15,48 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await emailjs.send('service_qj9mn8b', 'template_i9d7btn', {
-        from_name: formData.name, from_email: formData.email, subject: formData.subject, message: formData.message,
-      }, 'o5-Ex7Owap4zrChOM');
-      toast({ title: 'Message Sent Successfully! 🎉', description: "Thank you for reaching out. We'll get back to you shortly.", duration: 5000 });
+      await emailjs.send(
+        'service_qj9mn8b',
+        'template_i9d7btn',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        'o5-Ex7Owap4zrChOM'
+      );
+      toast({
+        title: 'Message Sent Successfully! 🎉',
+        description: "Thank you for reaching out. We'll get back to you shortly.",
+        duration: 5000,
+      });
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
-      toast({ title: 'Error Sending Message', description: 'Something went wrong. Please try again or contact us directly.', variant: 'destructive', duration: 5000 });
+      toast({
+        title: 'Error Sending Message',
+        description: 'Something went wrong. Please try again or contact us directly.',
+        variant: 'destructive',
+        duration: 5000,
+      });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const contactInfo = [
-    { icon: Mail, title: 'Email', details: 'info@eleventechsolutions.in', href: 'mailto:info@eleventechsolutions.in' },
-    { icon: MapPin, title: 'Address', details: 'New Address Line 1, New Address Line 2, City, State – PIN', href: '#' },
+    { 
+      icon: Mail, 
+      title: 'Email', 
+      details: 'info@eleventechsolutions.in', 
+      href: 'mailto:info@eleventechsolutions.in' 
+    },
+    { 
+      icon: MapPin, 
+      title: 'Address', 
+      details: 'Plot No. 45, Hi-Tech City, Madhapur, Hyderabad, Telangana', 
+      href: '#' 
+    },
   ];
 
   return (
@@ -51,6 +78,7 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -61,17 +89,61 @@ const Contact = () => {
             <h3 className="text-3xl font-bold text-white mb-8">Send Us a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input type="text" name="name" value={formData.name} onChange={handleChange} required placeholder="Your Name" className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
-                <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="Your Email" className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  placeholder="Your Name"
+                  className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="Your Email"
+                  className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition"
+                />
               </div>
-              <input type="text" name="subject" value={formData.subject} onChange={handleChange} required placeholder="Subject" className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
-              <textarea name="message" value={formData.message} onChange={handleChange} required rows={5} placeholder="Your Message..." className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition resize-none" />
-              <Button type="submit" disabled={isSubmitting} size="lg" className="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-lg shadow-lg shadow-violet-500/20 hover:shadow-xl transition-all disabled:opacity-50">
-                {isSubmitting ? <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div> : <><Send className="mr-2 h-5 w-5" /> Send Message</>}
+              <input
+                type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+                placeholder="Subject"
+                className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition"
+              />
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={5}
+                placeholder="Your Message..."
+                className="w-full bg-black/30 border-white/10 rounded-lg px-4 py-3 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition resize-none"
+              />
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                size="lg"
+                className="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-lg shadow-lg shadow-violet-500/20 hover:shadow-xl transition-all disabled:opacity-50"
+              >
+                {isSubmitting ? (
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                ) : (
+                  <>
+                    <Send className="mr-2 h-5 w-5" /> Send Message
+                  </>
+                )}
               </Button>
             </form>
           </motion.div>
 
+          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -80,18 +152,32 @@ const Contact = () => {
             className="space-y-8"
           >
             {contactInfo.map((info) => (
-              <a key={info.title} href={info.href} className="flex items-center p-6 glass-card rounded-2xl group hover:border-white/20 transition-all duration-300">
+              <a
+                key={info.title}
+                href={info.href}
+                className="flex items-center p-6 glass-card rounded-2xl group hover:border-white/20 transition-all duration-300"
+              >
                 <div className="bg-violet-500/20 text-violet-400 p-4 rounded-lg mr-5">
                   <info.icon className="h-6 w-6" />
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold text-white">{info.title}</h4>
-                  <p className="text-gray-400 group-hover:text-violet-300 transition-colors">{info.details}</p>
+                  <p className="text-gray-400 group-hover:text-violet-300 transition-colors">
+                    {info.details}
+                  </p>
                 </div>
               </a>
             ))}
+
+            {/* Map / Address */}
             <div className="mt-8 rounded-2xl overflow-hidden glass-card">
-              <img className="w-full h-48 object-cover" alt="Map showing location" src="https://images.unsplash.com/photo-1561653978-a526ddcfda79" />
+              <iframe
+                title="Eleventech Solutions Location"
+                src="https://www.google.com/maps/embed/v1/place?q=Plot+No.+45,+Hi-Tech+City,+Madhapur,+Hyderabad,+Telangana&key=YOUR_GOOGLE_MAPS_API_KEY"
+                className="w-full h-48 border-0"
+                allowFullScreen=""
+                loading="lazy"
+              ></iframe>
             </div>
           </motion.div>
         </div>
