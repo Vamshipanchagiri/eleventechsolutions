@@ -30,7 +30,11 @@ const Contact = () => {
   const contactInfo = [
     { icon: Mail, title: 'Email', details: 'info@eleventechsolutions.in', href: 'mailto:info@eleventechsolutions.in' },
     { icon: Phone, title: 'Phone', details: '8977897877', href: 'tel:8977897877' },
-    { icon: MapPin, title: 'Address', details: 'Road No. 10, Jubilee Hills, Hyderabad', href: '#' },
+    { icon: MapPin, title: 'Address', details: ' ElevenTech Solutions Pvt.
+ Ltd.
+ Plot No. 45, Hi-Tech City,
+ Madhapur, Hyderabad,
+ Telangana – 500081', href: '#' },
   ];
 
   return (
