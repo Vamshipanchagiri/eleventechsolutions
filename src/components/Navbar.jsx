@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Logo from '@/assets/logo.png'; // import your logo
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,16 +43,16 @@ const Navbar = () => {
     >
       <div className="section-container">
         <div className="flex justify-between items-center h-20">
+          {/* Brand Name Instead of Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="flex-shrink-0"
             onClick={() => scrollToSection('home')}
-            style={{ cursor: 'pointer' }}
+            className="text-xl font-bold text-white cursor-pointer"
           >
-            {/* Logo Image */}
-            <img src={Logo} alt="Eleventech Solutions Logo" className="h-10 w-auto" />
+            Eleventech <span className="text-violet-500">Solutions</span>
           </motion.div>
 
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <motion.button
@@ -69,6 +68,7 @@ const Navbar = () => {
             ))}
           </div>
 
+          {/* Contact Button (Desktop) */}
           <div className="hidden md:block">
             <Button
               onClick={() => scrollToSection('contact')}
@@ -79,6 +79,7 @@ const Navbar = () => {
             </Button>
           </div>
 
+          {/* Mobile Menu Toggle */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -89,6 +90,7 @@ const Navbar = () => {
           </div>
         </div>
 
+        {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
