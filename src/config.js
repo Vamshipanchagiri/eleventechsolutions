@@ -34,7 +34,7 @@ export const services = [
 export const businessDetails = {
   name: "ElevenTechSolutions",
   email: "info@eleventechsolutions.in",
-  phone: "+91 9999999999",
+  phone: "+91 7382391053",
   address: "Road No.2, Madhapur, HiTech City, Hyderabad, PIN 500081",
   tagline: "Engineering the Future of Technology"
 };
