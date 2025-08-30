@@ -47,7 +47,7 @@ export const jsonLd = {
     "logo": "https://www.eleventechsolutions.in/logo.png",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+91-9999999999",
+      "telephone": "+91-7382391053",
       "contactType": "customer service",
       "email": "info@eleventechsolutions.in"
     },

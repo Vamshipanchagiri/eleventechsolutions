@@ -1,15 +1,7 @@
 import React from 'react';
 import { businessDetails } from '@/config';
-import { useToast } from '@/components/ui/use-toast';
 
 const Footer = () => {
-    const { toast } = useToast();
-
-    const handleFeatureClick = () => {
-        toast({
-            description: "🚧 This feature isn't implemented yet—but don't worry! You can request it in your next prompt! 🚀"
-        });
-    };
     
     const scrollToSection = (e, sectionId) => {
         e.preventDefault();
@@ -23,7 +15,6 @@ const Footer = () => {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
 
     return (
         <footer className="py-20 px-6 bg-black text-white dark-texture-overlay">
@@ -51,23 +42,6 @@ const Footer = () => {
                 </div>
               </div>
 
-              <div className="md:col-span-2">
-                <span className="text-sm font-semibold tracking-widest text-gray-300 uppercase mb-4 block">
-                  Follow Us
-                </span>
-                <div className="space-y-3">
-                  {['LinkedIn', 'Twitter', 'GitHub'].map((platform) => (
-                    <button
-                      key={platform}
-                      onClick={handleFeatureClick}
-                      className="block text-sm font-light text-gray-400 sophisticated-underline hover:text-white transition-colors duration-300"
-                    >
-                      {platform}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
               <div className="md:col-span-3">
                 <span className="text-sm font-semibold tracking-widest text-gray-300 uppercase mb-4 block">
                   Contact
@@ -86,10 +60,10 @@ const Footer = () => {
                 © {new Date().getFullYear()} {businessDetails.name}. All Rights Reserved.
               </p>
               <div className="flex space-x-6 mt-4 sm:mt-0">
-                <button onClick={handleFeatureClick} className="text-xs font-light text-gray-500 sophisticated-underline hover:text-gray-300 transition-colors duration-300">
+                <button className="text-xs font-light text-gray-500 sophisticated-underline hover:text-gray-300 transition-colors duration-300">
                   Privacy Policy
                 </button>
-                <button onClick={handleFeatureClick} className="text-xs font-light text-gray-500 sophisticated-underline hover:text-gray-300 transition-colors duration-300">
+                <button className="text-xs font-light text-gray-500 sophisticated-underline hover:text-gray-300 transition-colors duration-300">
                   Terms of Service
                 </button>
               </div>
